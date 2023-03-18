@@ -55,12 +55,6 @@ build CMakeFiles/pointer.dir/main.c.obj: C_COMPILER__pointer_Debug C$:/Users/Mal
   OBJECT_DIR = CMakeFiles\pointer.dir
   OBJECT_FILE_DIR = CMakeFiles\pointer.dir
 
-build CMakeFiles/pointer.dir/projects/AA.c.obj: C_COMPILER__pointer_Debug C$:/Users/Malat.UMUTCAN/Desktop/C/pointer/cmake-build-debug/projects/AA.c || cmake_object_order_depends_target_pointer
-  DEP_FILE = CMakeFiles\pointer.dir\projects\AA.c.obj.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu2x
-  OBJECT_DIR = CMakeFiles\pointer.dir
-  OBJECT_FILE_DIR = CMakeFiles\pointer.dir\projects
-
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target pointer
@@ -69,7 +63,7 @@ build CMakeFiles/pointer.dir/projects/AA.c.obj: C_COMPILER__pointer_Debug C$:/Us
 #############################################
 # Link the static library libpointer.a
 
-build libpointer.a: C_STATIC_LIBRARY_LINKER__pointer_Debug CMakeFiles/pointer.dir/main.c.obj CMakeFiles/pointer.dir/projects/AA.c.obj
+build libpointer.a: C_STATIC_LIBRARY_LINKER__pointer_Debug CMakeFiles/pointer.dir/main.c.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles\pointer.dir
   POST_BUILD = cd .
