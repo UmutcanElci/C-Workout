@@ -11,6 +11,7 @@ void delete();
 void update();
 void list();
 void listAll();
+void searchById();
 void listByName();
 void listBySex();
 void removeFile();
@@ -26,12 +27,12 @@ struct Person{
 void menu();
 void createFile();
 void add();
-void delete();
+void deleteAllRecord();
 void update();
 void list();
 void listAll();
+void searchById();
 void listByName();
-void listBySex();
 void removeFile();
 const char fName[] = {"phonebook.txt"};//To assign the file name that i want -- mistake for the safety i change char fName[] = {"phonebook.txt"}; to char fName[] = {"phonebook.txt"};
 
@@ -46,7 +47,7 @@ void menu(){
         system("cls");
         printf("\t#######----PHONEBOOK----#######");
         printf("\n\n\t\t --MENU-- \t\t\n\n");
-        printf("\t 1.Add New \t 2.List \t 3.Delete \t 4.Update \t 5.Remove File \t 6.Exit\n");
+        printf("\t 1.Add New \t 2.List \t 3.Delete \t 4.Update \t 5.Search \t 6.Exit\n");
         int choice;
     scanf("\n%d",&choice);
         switch (choice) {
@@ -57,13 +58,13 @@ void menu(){
                 list();
                 break;
             case 3:
-                //delete();
+                deleteAllRecord();
                 break;
             case 4:
                 //update();
                 break;
             case 5:
-                //removeFile();
+                searchById();
                 break;
             case 6:
                 system("cls");
@@ -72,6 +73,7 @@ void menu(){
                 printf("\n Wrong Input \n");
                 menu();
                 system("cls");
+                break;
 
         }
 }
@@ -82,16 +84,16 @@ void add(){
     f = fopen(fName,"ab+");//ab+ helps us the open the file and also start the end of the file that helps us the see the data's one after the other
 
     printf("\nEnter ID : ");
-    scanf("%d",&person1.id);
+    scanf("\n%d",&person1.id);
 
     printf("\nEnter Name : ");
-    scanf("%s",person1.name);
+    scanf("\n%s",person1.name);
 
     printf("\nEnter Address : ");
-    scanf("%s",person1.address);
+    scanf("\n%s",person1.address);
 
     printf("\nEnter Phone Number : ");
-    scanf("%s",person1.phoneNum);
+    scanf("\n%s",person1.phoneNum);
 
     fprintf(f,"%d %s %s %s\n",person1.id,person1.name,person1.address,person1.phoneNum);
     fclose(f);
@@ -140,4 +142,50 @@ void list(){
             listAll();
             break;
     }
+}
+void deleteAllRecord(){
+    if(remove(fName) == 0){
+        printf("Delete Successful");
+    }else{
+        printf("Error");
+    }
+    getchar();
+    system("cls");
+    menu();
+}
+
+void searchById(){
+    struct Person person1;
+    FILE *f;
+    char line[100]; // Length of text
+    int id, found = 0;
+
+    system("cls");
+    printf("\nPlease enter the id of the record you search for : ");
+    scanf("%d", &id);
+
+    f = fopen(fName, "rb+");
+    if(f == NULL){
+        printf("\nFile not found!");
+        menu();
+    }
+
+    while(fgets(line, sizeof(line), f)){
+        sscanf(line, "%d %s %s %s", &person1.id, person1.name, person1.address, person1.phoneNum);
+        if(person1.id == id){
+            printf("\nRecord found");
+            printf("\nID : %d ", person1.id);
+            printf("\nName : %s ", person1.name);
+            printf("\nAddress : %s ", person1.address);
+            printf("\nPhone num : %s ", person1.phoneNum);
+            found = 1;
+            break;
+        }
+    }
+    if(!found){
+        printf("\nNot found!");
+    }
+    fclose(f);
+    system("cls");
+    menu();
 }
