@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-#include <unistd.h>
-#include <stdbool.h>
 
 void menu();
 void createFile();
@@ -32,7 +30,7 @@ void listAll();
 void searchById();
 void listByName();
 
-const char fName[] = {"phonebook.txt"};//To assign the file name that i want -- mistake for the safety i change char fName[] = {"phonebook.txt"}; to char fName[] = {"phonebook.txt"};
+const char fName[] = "phonebook.txt";//To assign the file name that i want -- mistake for the safety i change char fName[] = {"phonebook.txt"}; to char fName[] = {"phonebook.txt"};
 
 int main(int argc, char* argv[]){
     system("cls");  //clears the screen
@@ -113,7 +111,8 @@ void listAll(){
 
     if(f == NULL) {
         printf("\n No data found.");
-        return;
+        getch();
+        menu();
 
     }
     rewind(f);//to clear the buffer in the function we use rewind(). This function moves the filer pointer to the beginning of the file and clears the buffer.
@@ -156,7 +155,7 @@ void searchById(){
     struct Person person1;
     FILE *f;
     char line[100]; // Length of text
-    int id, found = 0;
+    int id;
 
     system("cls");
     printf("\nPlease enter the id of the record you search for : ");
@@ -168,21 +167,17 @@ void searchById(){
         menu();
     }
 
-    while(fgets(line, sizeof(line), f)){
-        sscanf(line, "%d %s %s %s", &person1.id, person1.name, person1.address, person1.phoneNum);
+    while(fread(&person1, sizeof(struct Person), 1, f)){
         if(person1.id == id){
             printf("\nRecord found");
             printf("\nID : %d ", person1.id);
             printf("\nName : %s ", person1.name);
             printf("\nAddress : %s ", person1.address);
             printf("\nPhone num : %s ", person1.phoneNum);
-            found = 1;
             break;
         }
     }
-    if(!found){
-        printf("\nNot found!");
-    }
+
     fclose(f);
     system("cls");
     menu();
