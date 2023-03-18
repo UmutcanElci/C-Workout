@@ -13,9 +13,7 @@ void list();
 void listAll();
 void searchById();
 void listByName();
-void listBySex();
-void removeFile();
-bool appRun = true;
+
 
 struct Person{
     int id;
@@ -33,7 +31,7 @@ void list();
 void listAll();
 void searchById();
 void listByName();
-void removeFile();
+
 const char fName[] = {"phonebook.txt"};//To assign the file name that i want -- mistake for the safety i change char fName[] = {"phonebook.txt"}; to char fName[] = {"phonebook.txt"};
 
 int main(int argc, char* argv[]){
