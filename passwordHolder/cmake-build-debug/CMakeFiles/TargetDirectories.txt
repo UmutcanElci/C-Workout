@@ -1,0 +1,3 @@
+C:/Users/Malat.UMUTCAN/Desktop/C/passwordHolder/cmake-build-debug/CMakeFiles/passwordHolder.dir
+C:/Users/Malat.UMUTCAN/Desktop/C/passwordHolder/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Malat.UMUTCAN/Desktop/C/passwordHolder/cmake-build-debug/CMakeFiles/rebuild_cache.dir
